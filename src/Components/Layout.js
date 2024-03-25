@@ -19,23 +19,32 @@ const Layout =(props)=>{
         }
         let colect = []
         if(value === "+"||value ==="-"||value ==="/"||value ==="*") setOperMath(value)
-        if(value==="="){
-            let val,val2
-            colect=input.split(opMath)
-            val = parseInt(colect[0])
-            val2 = parseInt(colect[1])
-            setResult(doTheMath[opMath](val,val2))
-        }else if(value==="Back"){
-            setInput(input.substring(0, input.length-1))
-            console.log(input);
-        }else if(value==="C"){
-            setInput("")
-            setResult("")
+        try {
+            if(value==="="){
+                let val,val2
+                colect=input.split(opMath)
+                 if(colect[0] % 1 !== 0 || colect[1] % 1 !== 0){
+                    val = parseFloat(colect[0])
+                    val2 = parseFloat(colect[1])
+                 }else{
+                     val = parseInt(colect[0])
+                     val2 = parseInt(colect[1])
+                 }
+                setResult(doTheMath[opMath](val,val2)) 
+                setInput("")
+            }else if(value==="Back"){
+                setInput(input.substring(0, input.length-1))
+            }else if(value==="C"){
+                setInput("")
+                setResult("")
+            }
+            else{
+                setInput((input+=value))
+            }
+        } catch (error) {
+            console.log(error);
         }
-        else{
-            setInput((input+=value))
-        }
-
+       
     }
 
     return (
@@ -44,25 +53,25 @@ const Layout =(props)=>{
                 <div className="keys">
                     <input type="button" className="button clear" value={"C"} onClick={handleClick}></input>
                     <input type="button" className="button" value={"Back"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"%"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"/"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"7"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"8"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"9"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"*"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"4"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"5"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"6"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"-"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"1"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"2"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"3"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"+"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"."} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"0"} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"="} onClick={handleClick}></input>
-                    <input type="button" className="button " value={"Del"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"%"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"/"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"7"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"8"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"9"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"*"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"4"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"5"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"6"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"-"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"1"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"2"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"3"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"+"} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"."} onClick={handleClick}></input>
+                    <input type="button" className="button" value={"0"} onClick={handleClick}></input>
+                    <input type="button" className="button" id="buttonLast" value={"="} onClick={handleClick}></input>
                 </div>
+                <h2>NASA</h2>
         </div>
     )
 }
