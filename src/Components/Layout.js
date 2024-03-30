@@ -20,9 +20,21 @@ const Layout =(props)=>{
         let colect = []
         if(value === "+"||value ==="-"||value ==="/"||value ==="*") setOperMath(value)
         try {
-            if(value==="="){
-                let val,val2
-                colect=input.split(opMath)
+            let val, val2
+            if(value==="=" && result !== ""){
+                    colect=input.split(opMath)
+                    if(colect[0] % 1 !== 0 || colect[1] % 1 !== 0){
+                        val = parseFloat(colect[0])
+                        val2 = parseFloat(colect[1])
+                     }else{
+                         val = parseInt(colect[0])
+                         val2 = parseInt(colect[1])
+                     }
+                    setResult(doTheMath[opMath](parseInt(result), val2))
+                    setInput("")
+            }
+            else if(value==="="){
+                 colect=input.split(opMath)
                  if(colect[0] % 1 !== 0 || colect[1] % 1 !== 0){
                     val = parseFloat(colect[0])
                     val2 = parseFloat(colect[1])
@@ -44,9 +56,8 @@ const Layout =(props)=>{
         } catch (error) {
             console.log(error);
         }
-       
     }
-
+   
     return (
         <div className="calculator">
             <Output user={input} answer={result}/>
