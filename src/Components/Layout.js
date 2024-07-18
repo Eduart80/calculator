@@ -82,7 +82,7 @@ const Layout =(props)=>{
                     <input type="button" className="button" value={"0"} onClick={handleClick}></input>
                     <input type="button" className="button" id="buttonLast" value={"="} onClick={handleClick}></input>
                 </div>
-                <h2>NASA</h2>
+                <h2>CatUlator</h2>
         </div>
     )
 }
